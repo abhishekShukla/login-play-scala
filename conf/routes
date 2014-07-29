@@ -7,7 +7,6 @@ GET     /                           controllers.Application.index
 GET     /only-twitter               controllers.Application.onlyTwitter
 GET     /only-facebook               controllers.Application.onlyFacebook
 GET     /only-github               controllers.Application.onlyGithub
-GET     /link-result                controllers.Application.linkResult
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
@@ -29,7 +28,7 @@ GET     /password                   securesocial.controllers.PasswordChange.page
 POST    /password                   securesocial.controllers.PasswordChange.handlePasswordChange
 
 # Providers entry points
-GET     /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider, redirectTo:Option[String])
-POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider, redirectTo:Option[String])
+GET     /authenticate/:provider     securesocial.controllers.ProviderController.authenticate(provider)
+POST    /authenticate/:provider     securesocial.controllers.ProviderController.authenticateByPost(provider)
 
 GET     /not-authorized             securesocial.controllers.ProviderController.notAuthorized

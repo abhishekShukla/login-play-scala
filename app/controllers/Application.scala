@@ -59,17 +59,6 @@ object Application extends Controller with securesocial.core.SecureSocial {
 		Ok("You can see this because you logged in using Github")
 	}
 
-	def linkResult = SecuredAction { implicit request =>
-	 
-		import com.typesafe.plugin._
-		import play.api.Play.current
-		
-		val identities = use[MyUserService].getLinkedAccounts(request.user.identityId)
-		
-		println(identities)
-		
-		Ok(views.html.linkResult(request.user, identities))
-	}
 }
 
 // An Authorization implementation that only authorizes uses that logged in using twitter

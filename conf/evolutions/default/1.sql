@@ -1,11 +1,5 @@
 # --- !Ups
 
-CREATE TABLE `users` (
-  `application_user_id` varchar(150) NOT NULL DEFAULT '',
-  `handle_name` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`application_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `user_identities` (
   `application_user_id` varchar(150) NOT NULL DEFAULT '',
   `provider_user_id` varchar(150) NOT NULL DEFAULT '',
@@ -35,8 +29,6 @@ CREATE TABLE `tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 # --- !Downs
-
-DROP TABLE IF EXISTS users;
 
 DROP TABLE IF EXISTS user_identities;
 

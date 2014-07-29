@@ -4,6 +4,7 @@ import org.squeryl.KeyedEntity
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
 import org.joda.time._
+import securesocial.core.providers.Token
 
 case class MyToken (
 
@@ -58,6 +59,20 @@ object MyToken {
 	    Tokens.deleteWhere(t => t.expirationTime lt new DateTime().getMillis())
 	  }
 	}
-
+	
+	object Converters {
+	  
+		implicit def tokenToMyToken(token: Token): MyToken = {
+				MyToken(token.uuid, token.email, token.creationTime.getMillis(),
+      															token.expirationTime.getMillis(), token.isSignUp)
+		} 
+  
+		implicit def myTokenToToken(myToken : Option[MyToken]) : Option[Token] = {
+				myToken map (myToken => Token(myToken.uuid, myToken.email, new DateTime(myToken.creationTime),
+      		new DateTime(myToken.expirationTime), myToken.isSignUp))
+		}
+  
+	}
+	
 }
 

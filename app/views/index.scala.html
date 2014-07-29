@@ -52,16 +52,6 @@
         <a class="btn" href="@securesocial.core.providers.utils.RoutesHelper.changePasswordPage.absoluteURL(IdentityProvider.sslEnabled)">Change Password</a>
     }
 
-    <span>Link this account to
-
-    @Registry.providers.all.values.map { provider =>
-        @if( provider.authMethod == OAuth1 || provider.authMethod == OAuth2 ) {
-            @defining( "securesocial/images/providers/%s.png".format(provider.id) ) { imageUrl =>
-            <a href="@provider.authenticationUrl("/link-result")"> <img src="@RoutesHelper.at(imageUrl)"/></a>
-            }
-        }
-    }
-    </span>
     <hr>
     <a class="btn" href="@securesocial.controllers.routes.LoginPage.logout()">Logout</a>
 </div>

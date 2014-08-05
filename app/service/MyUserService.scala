@@ -48,10 +48,8 @@ class MyUserService(application: Application) extends UserServicePlugin(applicat
     
     val maybeUser = UserIdentity.read((user.identityId.userId, user.identityId.providerId))
       
-    maybeUser match {      
-        case Some(existingUser) => UserIdentity.update((convertIdentityToUserIdentity(existingUser.application_user_id)(user)))
-        case None => UserIdentity.create(newUser(user))
-      }
+    maybeUser.map(existingUser => UserIdentity.update((convertIdentityToUserIdentity(existingUser.application_user_id)(user))))
+    				 .getOrElse(UserIdentity.create(newUser(user))) 
       user
     }
   }
